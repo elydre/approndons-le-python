@@ -5,5 +5,5 @@ for x in range(0, 10):
     print("cc" + str(x))
 """
 
-
-print(segmenter(inp))
+for i in inp.split("\n"):
+    print(segmenter(i))
