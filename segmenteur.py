@@ -16,6 +16,37 @@
 
 version = "0.1.0"
 
+def coups(liste,valeur):
+    if type(liste[0]) is list and len(liste) == 1:
+        return liste[0], valeur + 1, True
+    else:
+        return liste, valeur, False
+
+def emboite(liste):
+    valeur = 0
+    contin = True
+    while contin:
+        liste, valeur, contin = coups(liste,valeur)
+    return liste, valeur
+
+def edit_liste(bigliste: list) -> list:
+    new = []
+    for liste in bigliste:
+        if type(liste) is list:
+            if len(liste) == 1:
+                liste, valeur = emboite(liste)
+                if valeur > 0:
+                    new.append(edit_liste(liste))
+                elif valeur == 0:
+                    for l in liste:
+                        new.append(l)
+            else:
+                for l in edit_liste(liste):
+                    new.append(l)
+        else:
+            new.append(liste)
+    return new
+
 def segmenter_string(code: str) -> list:
     actual = 0
     start = 0
@@ -38,19 +69,11 @@ def segmenter_string(code: str) -> list:
 def epurer(code: list) -> list:
     return [epurer(l[0]) if type(l) is list and len(l) == 1 and type(l[0]) is list else epurer(l) if type(l) is list else l for l in code]
 
-def edit_liste(liste: list) -> list:
-    # transphormer les liste de liste de liste et liste de liste en liste et ajouter a la liste d'avant les liste simple qui ne sont pas de liste ou de liste de liste
-    # transphormer sa:
-    # [['str', [['1']], ['+str', [[['list', [[['str', [['123123']]]]]]]], '*2']]]
-    # en sa:
-    # ['str', ['1'], '+str', ['list', ['str', ['123123']]], '*2']
-    pass
 
 def parenthese_in_code(code: list) -> bool:
     return True in [ parenthese_in_code(l) if type(l) is list else "(" in l or ")" in l for l in code]
 
 def segmenter(code: list) -> list:
-    print(code)
     return [segmenter(l) if type(l) is list else segmenter_string(l) for l in code]
 
 
@@ -59,12 +82,10 @@ def launch_segmenter(code: str) -> list:
     while parenthese_in_code(code):
         try:
             code = segmenter(code)
-        except Exception as e:
-            print(e)
-            break
-    return code[0]
-    # return epurer(code)[0]
+        except: break
+    return edit_liste(code[0])
 
 
 test = "str(1)+str(list(str(123123)))*2"
+print(test)
 print(launch_segmenter(test))
