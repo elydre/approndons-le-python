@@ -1,0 +1,1 @@
+from PyParser.segmenteur import launch_segmenter as segmenter
