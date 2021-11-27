@@ -76,7 +76,7 @@ def epurer(code: list) -> list:
 
 
 def parenthese_in_code(code: list) -> bool:
-    return True in [ parenthese_in_code(l) if type(l) is list else "(" in l or ")" in l for l in code]
+    return True in [parenthese_in_code(l) if type(l) is list else "(" in l or ")" in l for l in code]
 
 def segmenter(code: list) -> list:
     return [segmenter(l) if type(l) is list else segmenter_string(l) for l in code]
