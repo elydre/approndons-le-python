@@ -14,7 +14,7 @@
 --|~|--|~|--|~|--|~|--|~|--|~|--
 '''
 
-version = "0.1.0"
+version = "0.1.2"
 
 def coups(liste,valeur):
     if type(liste[0]) is list and len(liste) == 1:
@@ -82,10 +82,7 @@ def launch_segmenter(code: str) -> list:
     while parenthese_in_code(code):
         try:
             code = segmenter(code)
-        except: break
+        except Exception as e:
+            print(e)
+            break
     return edit_liste(code[0])
-
-
-test = "str(1)+str(list(str(123123)))*2"
-print(test)
-print(launch_segmenter(test))
