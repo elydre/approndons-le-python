@@ -1,9 +1,12 @@
 from PyParser.segmenteur import launch_segmenter as segmenter
+from PyParser.sanalyseur import line
 
-inp = """
-for x in range(0, 10):
-    print("cc" + str(x))
-"""
+inp = segmenter("""
+for x in range(10)
+""")
 
-for i in inp.split("\n"):
-    print(segmenter(i))
+test = line(inp)
+
+test.analyse()
+
+print(test)
