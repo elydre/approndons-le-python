@@ -16,6 +16,10 @@
 
 version = "0.1.2"
 
+def car_compteur(texte, tofind) -> int:
+    return len([l for l in texte if l == tofind])
+    
+
 def coups(liste,valeur):
     if type(liste[0]) is list and len(liste) == 1:
         return liste[0], valeur + 1, True
@@ -47,6 +51,7 @@ def edit_liste(bigliste: list) -> list:
             new.append(liste)
     return new
 
+
 def segmenter_string(code: str) -> list:
     actual = 0
     start = 0
@@ -77,12 +82,15 @@ def segmenter(code: list) -> list:
     return [segmenter(l) if type(l) is list else segmenter_string(l) for l in code]
 
 
-def launch_segmenter(code: str) -> list:
-    code = [str(code)]
-    while parenthese_in_code(code):
-        try:
-            code = segmenter(code)
-        except Exception as e:
-            print(e)
-            break
-    return edit_liste(code[0])
+def launch_segmenter(code: str,) -> list:
+    if car_compteur(code,"(") == car_compteur(code,")"):
+        code = [str(code)]
+        while parenthese_in_code(code):
+            try:
+                code = segmenter(code)
+            except Exception as e:
+                print(e)
+                break
+        return edit_liste(code[0])
+    else:
+        print(f"Erreur le nombre de parentèse ne corespond pas:\n'(' -> {car_compteur(code,'(')}\n')' -> {car_compteur(code,')')}")
