@@ -28,20 +28,22 @@ def banana(string, model):
             m = m.split("|?|")
             start_pos, end_pos = None, None
             for debut in range(len(string)):
-                for fin in range(debut, len(string)):
+                for fin in range(debut, len(string)+1):
                     if string[debut:fin] == m[0]:
                         start_pos = fin
-            for debut in range(len(string)):
-                for fin in range(debut, len(string)):
+            for debut in range(start_pos,len(string)):
+                for fin in range(debut, len(string)+1):
                     if string[debut:fin] == m[1]:
-                        end_pos = fin
-            if start_pos is None and end_pos is None:
+                        end_pos = debut
+            if start_pos != None and end_pos != None:
                 return string[start_pos:end_pos]
             else:
                 return None
 
 
-print(banana("if 1 == 3:", "if |?| == |!|"))
+print(banana("for x in range(1,2,3):", "for |?| in range(|!|):"))
+print(banana("for x in range(1,2,3):", "for |!| in range(|?|):"))
+
 
 class line:
     def __init__(self, inp: str):
