@@ -24,10 +24,17 @@ class line:
         self.brut = inp
         self.exit = None
 
-    def __str__(self):
-        return str(self.exit)
+    def print(self):
+        print(self.brut.strip())
+        print(" -",self.exit["type"].upper(),"-")
+        for k in self.exit.keys():
+            if k != "type":
+                print(" ",k, ":", self.exit[k])
+        print("")
+
+
     
-    def analyse(self):
+    def analyse(self) -> dict:
         # parser python
         ligne = self.brut.split(" ")
         ligne_brut = self.brut
