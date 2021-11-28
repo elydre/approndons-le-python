@@ -16,6 +16,33 @@
 
 version = "0.1.3"
 
+def banana(string, model):
+    """
+    string:   if 1 == 3:
+    model:    if |?| == |!|:
+    return    1
+    """
+    model = model.split("|!|")
+    for m in model:
+        if "|?|" in m:
+            m = m.split("|?|")
+            start_pos, end_pos = None, None
+            for debut in range(len(string)):
+                for fin in range(debut, len(string)):
+                    if string[debut:fin] == m[0]:
+                        start_pos = fin
+            for debut in range(len(string)):
+                for fin in range(debut, len(string)):
+                    if string[debut:fin] == m[1]:
+                        end_pos = fin
+            if start_pos is None and end_pos is None:
+                return string[start_pos:end_pos]
+            else:
+                return None
+
+
+print(banana("if 1 == 3:", "if |?| == |!|"))
+
 class line:
     def __init__(self, inp: str):
         self.brut = inp
