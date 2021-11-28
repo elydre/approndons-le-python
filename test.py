@@ -16,11 +16,11 @@ return x
 break
 pass
 continue
-print("coucou",1)
+print(['str', ['1'], '+str', ['list', ['str', ['123123']]], '*2'])
 """
 
 for i in inp.split("\n"):
     if i != "":  
         test = line(i)
         test.analyse()
-        test.print()
+        print(test.exit)
