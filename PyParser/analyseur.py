@@ -14,7 +14,7 @@
 --|~|--|~|--|~|--|~|--|~|--|~|--
 '''
 
-import analyseur_line as al
+import PyParser.analyseur_line as al
 
 version = "0.1.3"
 
@@ -48,3 +48,15 @@ class line:
         
         elif ligne[0].startswith("return"):
             self.exit = al.returnA(ligne_brut)
+
+        elif ligne[0].startswith("break"):
+            self.exit = al.breakA(ligne_brut)
+        
+        elif ligne[0].startswith("pass"):
+            self.exit = al.passA(ligne_brut)
+        
+        elif ligne[0].startswith("continue"):
+            self.exit = al.continueA(ligne_brut)
+
+        elif ligne[0].startswith("print"):
+            self.exit = al.printA(ligne_brut)

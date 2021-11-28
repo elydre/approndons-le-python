@@ -1,4 +1,4 @@
-from tools import banana
+from PyParser.tools import banana
 
 def find_comparateur(ligne):
     for c in ["==", "!=", ">", "<", ">=", "<="]:
@@ -6,7 +6,7 @@ def find_comparateur(ligne):
 
 def forA(ligne):
     var = banana(ligne, "for |?| in |!|")
-    if "range" in banana(ligne, "for |!| in |?|"):
+    if "range" in ligne:
         args = banana(ligne, "for |!| in range(|?|):")
         args = [arg.strip() for arg in args.split(",")]
         if len(args) == 1:
@@ -16,6 +16,10 @@ def forA(ligne):
         elif len(args) == 3:
             mini, maxi, pas = args[0], args[1], args[2]
         return {"type": "for-range", "var": var, "min": mini, "max": maxi, "pas": pas}
+    else:
+        var = banana(ligne, "for |?| in |!|:")
+        liste = banana(ligne, "for |!| in |?|:")
+        return {"type": "for-list", "var": var, "liste": liste}
 
 def ifA(ligne):
     comparateur = find_comparateur(ligne)
@@ -39,5 +43,18 @@ def whileA(ligne):
     return {"type": "while", "var1": var1, "var2": var2, "comparateur": comparateur}
 
 def returnA(ligne):
-    var = banana(ligne, "return |?|")
+    var = ligne.replace("return", "").strip()
     return {"type": "return", "var": var}
+
+def breakA(ligne):
+    return {"type": "break"}
+
+def passA(ligne):
+    return {"type": "pass"}
+
+def continueA(ligne):
+    return {"type": "continue"}
+
+def printA(ligne):
+    element = [e.strip() for e in "".join(banana(ligne, "print|?|").strip()[1:-1]).split(",")]
+    return {"type": "print", "element": element}

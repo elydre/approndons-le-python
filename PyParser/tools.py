@@ -14,11 +14,8 @@ def banana(string, model):
                     if string[debut:fin] == m[0]:
                         start_pos = fin
                         break
-            if start_pos != None:
-                for debut in range(start_pos,len(string)):
-                    for fin in range(debut, len(string)+1):
-                        if string[debut:fin] == m[1]:
-                            end_pos = debut
-                            break
-                if end_pos != None:
+            if start_pos is not None:
+                end_pos = string.find(m[1])
+                if end_pos is not None:
+                    if end_pos < start_pos: end_pos = len(string)
                     return string[start_pos:end_pos]

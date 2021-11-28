@@ -8,6 +8,14 @@ for x in range(10,20,2):
 if x == 3:
 if x != 3:
 if x < 3:
+elif x > 3:
+else:
+while x < 3:
+return x
+break
+pass
+continue
+print("coucou",1)
 """
 
 for i in inp.split("\n"):
