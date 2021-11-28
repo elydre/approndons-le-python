@@ -5,6 +5,9 @@ inp = """
 for x in range(20):
 for x in range(10,20):
 for x in range(10,20,2):
+if x == 3:
+if x != 3:
+if x < 3:
 """
 
 for i in inp.split("\n"):

@@ -66,3 +66,20 @@ class line:
                 elif len(args) == 3:
                     mini, maxi, pas = args[0], args[1], args[2]
                 self.exit = {"type": "for-range", "var": var, "min": mini, "max": maxi, "pas": pas}
+        if ligne[0] == "if":
+            if "==" in ligne_brut:
+                comparateur = "=="
+            elif "!=" in ligne_brut:
+                comparateur = "!="
+            elif "<=" in ligne_brut:
+                comparateur = "<="
+            elif ">=" in ligne_brut:
+                comparateur = ">="
+            elif "<" in ligne_brut:
+                comparateur = "<"
+            elif ">" in ligne_brut:
+                comparateur = ">"
+
+            var1 = banana(ligne_brut, f"if |?| {comparateur} |!|:")
+            var2 = banana(ligne_brut, f"if |!| {comparateur} |?|:")
+            self.exit = {"type": "if-less-equal", "var1": var1, "var2": var2, "comparateur": comparateur}
