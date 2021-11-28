@@ -16,7 +16,7 @@
 
 import PyParser.analyseur_line as al
 
-version = "0.1.3"
+version = "0.1.4"
 
 
 class line:
