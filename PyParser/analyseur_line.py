@@ -1,19 +1,8 @@
 from tools import banana
 
 def find_comparateur(ligne):
-    if "==" in ligne:
-        comparateur = "=="
-    elif "!=" in ligne:
-        comparateur = "!="
-    elif "<=" in ligne:
-        comparateur = "<="
-    elif ">=" in ligne:
-        comparateur = ">="
-    elif "<" in ligne:
-        comparateur = "<"
-    elif ">" in ligne:
-        comparateur = ">"
-    return comparateur
+    for c in ["==", "!=", ">", "<", ">=", "<="]:
+        if c in ligne: return c
 
 def forA(ligne):
     var = banana(ligne, "for |?| in |!|")
