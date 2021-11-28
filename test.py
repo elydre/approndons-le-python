@@ -16,7 +16,7 @@ return x
 break
 pass
 continue
-print(['str', ['1'], '+str', ['list', ['str', ['123123']]], '*2'])
+print(len("coucou"))
 """
 
 for i in inp.split("\n"):
