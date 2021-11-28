@@ -1,5 +1,20 @@
 from tools import banana
 
+def find_comparateur(ligne):
+    if "==" in ligne:
+        comparateur = "=="
+    elif "!=" in ligne:
+        comparateur = "!="
+    elif "<=" in ligne:
+        comparateur = "<="
+    elif ">=" in ligne:
+        comparateur = ">="
+    elif "<" in ligne:
+        comparateur = "<"
+    elif ">" in ligne:
+        comparateur = ">"
+    return comparateur
+
 def forA(ligne):
     var = banana(ligne, "for |?| in |!|")
     if "range" in banana(ligne, "for |!| in |?|"):
@@ -14,37 +29,26 @@ def forA(ligne):
         return {"type": "for-range", "var": var, "min": mini, "max": maxi, "pas": pas}
 
 def ifA(ligne):
-    if "==" in ligne:
-        comparateur = "=="
-    elif "!=" in ligne:
-        comparateur = "!="
-    elif "<=" in ligne:
-        comparateur = "<="
-    elif ">=" in ligne:
-        comparateur = ">="
-    elif "<" in ligne:
-        comparateur = "<"
-    elif ">" in ligne:
-        comparateur = ">"
-
+    comparateur = find_comparateur(ligne)
     var1 = banana(ligne, f"if |?| {comparateur} |!|:")
     var2 = banana(ligne, f"if |!| {comparateur} |?|:")
     return {"type": "if", "var1": var1, "var2": var2, "comparateur": comparateur}
 
 def elifA(ligne):
-    if "==" in ligne:
-        comparateur = "=="
-    elif "!=" in ligne:
-        comparateur = "!="
-    elif "<=" in ligne:
-        comparateur = "<="
-    elif ">=" in ligne:
-        comparateur = ">="
-    elif "<" in ligne:
-        comparateur = "<"
-    elif ">" in ligne:
-        comparateur = ">"
-
+    comparateur = find_comparateur(ligne)
     var1 = banana(ligne, f"elif |?| {comparateur} |!|:")
     var2 = banana(ligne, f"elif |!| {comparateur} |?|:")
     return {"type": "elif", "var1": var1, "var2": var2, "comparateur": comparateur}
+
+def elseA(ligne):
+    return {"type": "else"}
+
+def whileA(ligne):
+    comparateur = find_comparateur(ligne)
+    var1 = banana(ligne, f"while |?| {comparateur} |!|:")
+    var2 = banana(ligne, f"while |!| {comparateur} |?|:")
+    return {"type": "while", "var1": var1, "var2": var2, "comparateur": comparateur}
+
+def returnA(ligne):
+    var = banana(ligne, "return |?|")
+    return {"type": "return", "var": var}

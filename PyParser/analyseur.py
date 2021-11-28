@@ -34,11 +34,17 @@ class line:
         if ligne[0].startswith("for"):
             self.exit = al.forA(ligne_brut)
 
-        if ligne[0].startswith("if"):
+        elif ligne[0].startswith("if"):
             self.exit = al.ifA(ligne_brut)
 
-        if ligne[0].startswith("elif"):
+        elif ligne[0].startswith("elif"):
             self.exit = al.elifA(ligne_brut)
-            
-        if ligne[0].startswith("else"):
-            self.exit = {"type": "else"}
+
+        elif ligne[0].startswith("else"):
+            self.exit = al.elseA(ligne_brut)
+        
+        elif ligne[0].startswith("while"):
+            self.exit = al.whileA(ligne_brut)
+        
+        elif ligne[0].startswith("return"):
+            self.exit = al.returnA(ligne_brut)
