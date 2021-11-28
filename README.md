@@ -1,6 +1,7 @@
 # PY - PARSER
 
-py-parser est un parser de code python en python encore en plien dévlopement.
+Py-Parser est un parser de code python en python encore en plien dévlopement.
+Une fois achevé, il servira a de nombreux projets comme glade, ou encore pstring.
 
 ## analyseur
 
