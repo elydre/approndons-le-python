@@ -15,6 +15,7 @@
 '''
 
 import PyParser.analyseur_line as al
+from PyParser.segmenteur import launch_segmenter as segmenter
 
 version = "0.1.4"
 
@@ -32,7 +33,8 @@ class line:
                 print(" ",k, ":", self.exit[k])
         print("")
 
-
+    def segmenter(self, element: str):
+        self.exit[element] = segmenter(self.exit[element])
     
     def analyse(self) -> dict:
         # parser python
