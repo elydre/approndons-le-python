@@ -69,3 +69,6 @@ class line:
 
         elif ligne[0].startswith("print"):
             self.exit = al.printA(ligne_brut)
+        
+        elif ligne[0].startswith("import"):
+            self.exit = al.importA(ligne_brut)

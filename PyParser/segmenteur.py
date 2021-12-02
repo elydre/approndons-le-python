@@ -88,7 +88,7 @@ def launch_segmenter(code: str,) -> list:
         while parenthese_in_code(code):
             try:
                 code = segmenter(code)
-            except Exception as e:
+            except:
                 break
         return edit_liste(code[0])
     else:
