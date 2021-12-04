@@ -54,11 +54,11 @@ def passA(ligne):
 
 def importA(ligne):
     element = [e.strip() for e in "".join(banana(ligne, "import |?|").strip()[1:-1]).split(" ")]
-    return {"type": "import", "§element": element}
+    return {"type": "import", "§§element": element}
 
 def continueA(ligne):
     return {"type": "continue"}
 
 def printA(ligne):
     element = [e.strip() for e in "".join(banana(ligne, "print|?|").strip()[1:-1]).split(",")]
-    return {"type": "print", "§element": element}
+    return {"type": "print", "§§element": element}

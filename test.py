@@ -4,6 +4,6 @@ parser("""
 
 for x in range(10):
     print(x)
-print("hello")
+if hello == 5:
 
 """)

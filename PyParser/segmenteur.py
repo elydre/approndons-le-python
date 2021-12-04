@@ -83,6 +83,7 @@ def segmenter(code: list) -> list:
 
 
 def launch_segmenter(code: str,) -> list:
+    print(code)
     if car_compteur(code,"(") == car_compteur(code,")"):
         code = [str(code)]
         while parenthese_in_code(code):

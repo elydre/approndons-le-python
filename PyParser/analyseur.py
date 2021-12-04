@@ -22,7 +22,11 @@ version = "0.1.4"
 def launch_segmenter(dico):
     for k in dico.keys():
         if k.startswith("§"):
-            dico[k] = segmenter(dico[k])
+            if k.startswith("§§"):
+                for i in range(len(dico[k])):
+                    dico[k][i] = segmenter(dico[k][i])
+            else:
+                dico[k] = segmenter(dico[k])
         elif k.startswith("$"):
             dico[k] = launch_segmenter(dico[k])
     return dico
