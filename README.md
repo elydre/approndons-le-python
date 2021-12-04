@@ -14,6 +14,11 @@ test.analyse()
 test.print()
 ```
 
+### signe devant les clés
+
+- `$` : dico a analyser
+- `§` : variable a segmenter
+
 ## segmenteur
 
 ```py

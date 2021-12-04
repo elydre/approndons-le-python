@@ -29,18 +29,18 @@ def forA(ligne):
 
 def ifA(ligne):
     comp = comparaison(banana(ligne,"if |?|:"))
-    return {"type": "if", "comparaison": comp}
+    return {"type": "if", "$comparaison": comp}
 
 def elifA(ligne):
     comp = comparaison(banana(ligne,"elif |?|:"))
-    return {"type": "elif", "comparaison": comp}
+    return {"type": "elif", "$comparaison": comp}
 
 def elseA(ligne):
     return {"type": "else"}
 
 def whileA(ligne):
     comp = comparaison(banana(ligne,"while |?|:"))
-    return {"type": "while", "comparaison": comp}
+    return {"type": "while", "$comparaison": comp}
 
 def returnA(ligne):
     var = ligne.replace("return", "").strip()

@@ -19,6 +19,13 @@ from PyParser.segmenteur import launch_segmenter as segmenter
 
 version = "0.1.4"
 
+def launch_segmenter(dico):
+    for k in dico.keys():
+        if k.startswith("§"):
+            dico[k] = segmenter(dico[k])
+        elif k.startswith("$"):
+            dico[k] = launch_segmenter(dico[k])
+    return dico
 
 class line:
     def __init__(self, inp: str):
@@ -34,10 +41,8 @@ class line:
         print("")
 
     def segmenter(self):
-        for k in self.exit.keys():
-            if k.startswith("§"):
-                self.exit[k] = segmenter(self.exit[k])
-    
+        self.exit = launch_segmenter(self.exit)
+
     def analyse(self) -> dict:
         # parser python
         ligne = self.brut.split(" ")
