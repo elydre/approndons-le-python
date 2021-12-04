@@ -4,6 +4,12 @@ def find_comparateur(ligne):
     for c in ["==", "!=", ">", "<", ">=", "<="]:
         if c in ligne: return c
 
+def comparaison(ligne):
+    comparateur = find_comparateur(ligne)
+    var1 = banana(ligne, f"|?| {comparateur} |!|")
+    var2 = banana(ligne, f"|!| {comparateur} |?|")
+    return {"type": "comparaison", "§var1": var1, "§var2": var2, "comparateur": comparateur}
+
 def forA(ligne):
     var = banana(ligne, "for |?| in |!|")
     if "range" in ligne:
@@ -22,25 +28,19 @@ def forA(ligne):
         return {"type": "for-list", "§var": var, "§liste": liste}
 
 def ifA(ligne):
-    comparateur = find_comparateur(ligne)
-    var1 = banana(ligne, f"if |?| {comparateur} |!|:")
-    var2 = banana(ligne, f"if |!| {comparateur} |?|:")
-    return {"type": "if", "§var1": var1, "§var2": var2, "comparateur": comparateur}
+    comp = comparaison(banana(ligne,"if |?|:"))
+    return {"type": "if", "comparaison": comp}
 
 def elifA(ligne):
-    comparateur = find_comparateur(ligne)
-    var1 = banana(ligne, f"elif |?| {comparateur} |!|:")
-    var2 = banana(ligne, f"elif |!| {comparateur} |?|:")
-    return {"type": "elif", "§var1": var1, "§var2": var2, "comparateur": comparateur}
+    comp = comparaison(banana(ligne,"elif |?|:"))
+    return {"type": "elif", "comparaison": comp}
 
 def elseA(ligne):
     return {"type": "else"}
 
 def whileA(ligne):
-    comparateur = find_comparateur(ligne)
-    var1 = banana(ligne, f"while |?| {comparateur} |!|:")
-    var2 = banana(ligne, f"while |!| {comparateur} |?|:")
-    return {"type": "while", "§var1": var1, "§var2": var2, "comparateur": comparateur}
+    comp = comparaison(banana(ligne,"while |?|:"))
+    return {"type": "while", "comparaison": comp}
 
 def returnA(ligne):
     var = ligne.replace("return", "").strip()

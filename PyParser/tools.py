@@ -8,14 +8,8 @@ def banana(string, model):
     for m in model:
         if "|?|" in m:
             m = m.split("|?|")
-            start_pos, end_pos = None, None
-            for debut in range(len(string)):
-                for fin in range(debut, len(string)+1):
-                    if string[debut:fin] == m[0]:
-                        start_pos = fin
-                        break
-            if start_pos is not None:
-                end_pos = string.find(m[1])
-                if end_pos is not None:
-                    if end_pos < start_pos: end_pos = len(string)
-                    return string[start_pos:end_pos]
+            start_pos = string.find(m[0]) + len(m[0])
+            end_pos = string.find(m[1])
+            if -1 not in [start_pos, end_pos]:
+                if end_pos < start_pos: end_pos = len(string)
+                return string[start_pos:end_pos]
