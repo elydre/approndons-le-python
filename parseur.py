@@ -10,9 +10,9 @@ def parser(code: str):
         i.replace('\t', '    ')
         old_tabs, tab_chang = compare(old_tabs, i, 4)
 
-        test = line(tab_chang, i.strip())
-        test.chek_tab()
-        test.analyse()
-        test.segmenter()
-        for ex in test.exit:
+        par = line(tab_chang, i.strip())
+        par.chek_tab()
+        par.analyse()
+        par.segmenter()
+        for ex in par.exit:
             print(ex)
