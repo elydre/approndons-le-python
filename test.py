@@ -1,6 +1,6 @@
 from PyParser.analyseur import line
 
-i = "if len('coucou') == len('poules') and coucou == True:"
+i = "if len('coucou') == 5:"
 
 test = line(i)
 test.analyse()
