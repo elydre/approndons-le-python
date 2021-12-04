@@ -46,6 +46,12 @@ class line:
                     print(" ",k, ":", ex[k])
             print("")
 
+    def make(self):
+        self.chek_tab()
+        self.analyse()
+        self.segmenter()
+        return self.exit
+
     def segmenter(self):
         for i in range(len(self.exit)):
             self.exit[i] = launch_segmenter(self.exit[i])
