@@ -28,54 +28,61 @@ def launch_segmenter(dico):
     return dico
 
 class line:
-    def __init__(self, inp: str):
+    def __init__(self, tab_chang: str, inp: str):
         self.brut = inp
-        self.exit = None
+        self.tab_chang = tab_chang
+        self.exit = []
 
     def print(self):
         print(self.brut.strip())
-        print(" -",self.exit["type"].upper(),"-")
-        for k in self.exit.keys():
-            if k != "type":
-                print(" ",k, ":", self.exit[k])
-        print("")
+        for ex in self.exit:
+            print(" -",ex["type"].upper(),"-")
+            for k in ex.keys():
+                if k != "type":
+                    print(" ",k, ":", ex[k])
+            print("")
 
     def segmenter(self):
-        self.exit = launch_segmenter(self.exit)
+        for i in range(len(self.exit)):
+            self.exit[i] = launch_segmenter(self.exit[i])
+    
+    def chek_tab(self):
+        if self.tab_chang == "-":
+            self.exit.append({"type": "end"})
 
     def analyse(self) -> dict:
         # parser python
         ligne = self.brut.split(" ")
         ligne_brut = self.brut
         if ligne[0].startswith("for"):
-            self.exit = al.forA(ligne_brut)
+            self.exit.append(al.forA(ligne_brut))
 
         elif ligne[0].startswith("if"):
-            self.exit = al.ifA(ligne_brut)
+            self.exit.append(al.ifA(ligne_brut))
 
         elif ligne[0].startswith("elif"):
-            self.exit = al.elifA(ligne_brut)
+            self.exit.append(al.elifA(ligne_brut))
 
         elif ligne[0].startswith("else"):
-            self.exit = al.elseA(ligne_brut)
+            self.exit.append(al.elseA(ligne_brut))
         
         elif ligne[0].startswith("while"):
-            self.exit = al.whileA(ligne_brut)
+            self.exit.append(al.whileA(ligne_brut))
         
         elif ligne[0].startswith("return"):
-            self.exit = al.returnA(ligne_brut)
+            self.exit.append(al.returnA(ligne_brut))
 
         elif ligne[0].startswith("break"):
-            self.exit = al.breakA(ligne_brut)
+            self.exit.append(al.breakA(ligne_brut))
         
         elif ligne[0].startswith("pass"):
-            self.exit = al.passA(ligne_brut)
+            self.exit.append(al.passA(ligne_brut))
         
         elif ligne[0].startswith("continue"):
-            self.exit = al.continueA(ligne_brut)
+            self.exit.append(al.continueA(ligne_brut))
 
         elif ligne[0].startswith("print"):
-            self.exit = al.printA(ligne_brut)
+            self.exit.append(al.printA(ligne_brut))
         
         elif ligne[0].startswith("import"):
-            self.exit = al.importA(ligne_brut)
+            self.exit.append(al.importA(ligne_brut))

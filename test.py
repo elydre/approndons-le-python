@@ -1,8 +1,9 @@
-from PyParser.analyseur import line
+from parseur import parser
 
-i = "if len('coucou') == 5:"
+parser("""
 
-test = line(i)
-test.analyse()
-test.segmenter()
-print(test.exit)
+for x in range(10):
+    print(x)
+print("hello")
+
+""")
