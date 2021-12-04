@@ -65,7 +65,7 @@ def segmenter_string(code: str) -> list:
         elif car == ")":
             actual -= 1
             if actual == 0:
-                exit_code = [code[0:start], [[code[start+1:i]]], code[i+1:]]
+                exit_code = [code[:start], [[code[start+1:i]]], code[i+1:]]
                 while "" in exit_code:
                     exit_code.remove("")
                 break

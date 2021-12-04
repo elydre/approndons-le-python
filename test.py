@@ -6,7 +6,5 @@ test = line(i)
 test.analyse()
 
 print(test.exit)
-test.segmenter("var1")
-print(test.exit)
-test.segmenter("var2")
+test.segmenter()
 print(test.exit)

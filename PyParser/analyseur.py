@@ -33,8 +33,10 @@ class line:
                 print(" ",k, ":", self.exit[k])
         print("")
 
-    def segmenter(self, element: str):
-        self.exit[element] = segmenter(self.exit[element])
+    def segmenter(self):
+        for k in self.exit.keys():
+            if k.startswith("§"):
+                self.exit[k] = segmenter(self.exit[k])
     
     def analyse(self) -> dict:
         # parser python
