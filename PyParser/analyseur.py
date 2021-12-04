@@ -58,7 +58,9 @@ class line:
     
     def chek_tab(self):
         if self.tab_chang == "-":
-            self.exit.append({"type": "end"})
+            self.exit.append({"type": "closing"})
+        if self.tab_chang == "+":
+            self.exit.append({"type": "opening"})
 
     def analyse(self) -> dict:
         # parser python
