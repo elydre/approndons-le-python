@@ -16,5 +16,5 @@ def parser(code: str):
         for e in par.make():
             sortie.append(e)
     for _ in range(counting(4, latest)):
-        sortie.append({"type": "opening"})
+        sortie.append({"type": "closing"})
     return sortie
