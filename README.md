@@ -1,27 +1,19 @@
-# PY - PARSER
+# APPRONDONS LE PYTHON
 
-Py-Parser est un parser de code python en python encore en plien dévlopement.
-Une fois achevé, il servira a de nombreux projets comme glade, ou encore pstring.
+[![](https://img.shields.io/badge/solutions-gray.svg?colorB=4F44D6&style=for-the-badge)](https://github.com/pf4-DEV/approndons-le-python/blob/main/solutions.md)
 
-## analyseur
+## cahier des charges
 
-```py	
-from PyParser.analyseur import line
+- [**done**] simple a prendre en main 
+- explication rapide (activité et cours)
+- [**done**] pouvoir skip
+- note d’humour/décaler pour pas que se soit lassant
+- [**done**] système de point proportionnelle a l’activité
+- menu pour choisir le thème (un truc déroulant peut suffire)
+- pas de restriction de taille pour les programmes standrad (a voir pour les lambda)
+- dernier niveau ou il faut editer le code de *main.py*
 
-test = line("if 1 == 1:")
-test.analyse()
+## auteurs
 
-test.print()
-```
-
-### signe devant les clés
-
-- `$` : dico a analyser
-- `§` : variable a segmenter
-
-## segmenteur
-
-```py
-from PyParser.segmenteur import launch_segmenter
-launch_segmenter(code: str) -> list
-```
+- pf4 ([@pf4-DEV](https://github.com/pf4-DEV))
+- Loris ([@Lorisredstone](https://github.com/Lorisredstone))
