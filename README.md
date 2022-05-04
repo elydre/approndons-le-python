@@ -15,5 +15,5 @@
 
 ## auteurs
 
-- pf4 ([@pf4-DEV](https://github.com/pf4-DEV))
+- elydre ([@elydre](https://github.com/elydre))
 - Loris ([@Lorisredstone](https://github.com/Lorisredstone))
